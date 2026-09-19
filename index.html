@@ -3,77 +3,90 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Zero-dependency scientific calculator with trig, logs, factorials, and degree/radian support. Plain HTML, CSS, and JavaScript.">
-  <title>Scientific Calculator</title>
+  <meta name="description" content="fx-991CW-style scientific calculator. Zero dependencies, plain HTML/CSS/JS, with icon menu, catalog, variables, and DEG/RAD/GRAD.">
+  <title>fx-991CW · Scientific Calculator</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <main class="calc">
-    <header class="calc-header">
-      <div class="title-block">
-        <h1 class="brand">SciCalc<span>.</span></h1>
-        <p class="subtitle">scientific calculator</p>
-      </div>
-      <div class="mode-toggle" id="mode-toggle" title="Toggle angle mode">
-        <span class="mode-label">Angle</span>
-        <button class="mode-btn" id="mode-btn" aria-pressed="true">DEG</button>
-      </div>
+  <main class="cw" id="cw">
+    <header class="brand">
+      <span class="casio">CASIO</span>
+      <span class="series">ClassWiz&nbsp;·&nbsp;Web Edition</span>
+      <span class="model">fx-991CW</span>
     </header>
+    <div class="solar" aria-hidden="true"></div>
 
-    <section class="display" aria-live="polite">
-      <p class="expr" id="expr">&nbsp;</p>
-      <p class="result" id="result">0</p>
-    </section>
+    <section class="screen">
+      <div class="screen-inner" id="screen-inner">
+        <div class="status" id="status">
+          <span class="status-left" id="status-left">CALC</span>
+          <span class="status-right" id="status-right">DEG&nbsp;Math</span>
+        </div>
+        <p class="expr" id="expr">&nbsp;</p>
+        <p class="result" id="result">0</p>
+        <div class="softlabels">
+          <span>SETTINGS</span><span>VARIABLE</span><span>FUNCTION</span><span>CATALOG</span><span>TOOLS</span>
+        </div>
 
-    <section class="keypad" aria-label="Calculator keypad">
-      <div class="pad-scientific" id="pad-scientific">
-        <button class="btn fn" data-sym="pi">π</button>
-        <button class="btn fn" data-sym="e">e</button>
-        <button class="btn fn" data-fn="sin">sin</button>
-        <button class="btn fn" data-fn="cos">cos</button>
-        <button class="btn fn" data-fn="tan">tan</button>
-        <button class="btn fn" data-fn="ln">ln</button>
-        <button class="btn fn" data-fn="log">log</button>
-        <button class="btn fn" data-sym="sqrt">√</button>
-        <button class="btn fn" data-sym="^">x<sup>y</sup></button>
-        <button class="btn fn" data-sym="^2">x²</button>
-        <button class="btn fn" data-op="(">(</button>
-        <button class="btn fn" data-op=")">)</button>
-        <button class="btn fn" data-sym="!">x!</button>
-        <button class="btn fn" data-op="%">%</button>
+        <div class="overlay hidden" id="overlay" role="dialog" aria-modal="true">
+          <div class="overlay-inner" id="overlay-inner"></div>
+        </div>
+
+        <div class="toast hidden" id="toast"></div>
       </div>
-
-      <div class="pad-main">
-        <button class="btn utility" data-action="clear">AC</button>
-        <button class="btn utility" data-action="backspace">⌫</button>
-        <button class="btn utility" data-action="negate">±</button>
-        <button class="btn op" data-op="/">÷</button>
-
-        <button class="btn num" data-num="7">7</button>
-        <button class="btn num" data-num="8">8</button>
-        <button class="btn num" data-num="9">9</button>
-        <button class="btn op" data-op="*">×</button>
-
-        <button class="btn num" data-num="4">4</button>
-        <button class="btn num" data-num="5">5</button>
-        <button class="btn num" data-num="6">6</button>
-        <button class="btn op" data-op="-">−</button>
-
-        <button class="btn num" data-num="1">1</button>
-        <button class="btn num" data-num="2">2</button>
-        <button class="btn num" data-num="3">3</button>
-        <button class="btn op" data-op="+">+</button>
-
-        <button class="btn num zero" data-num="0">0</button>
-        <button class="btn num" data-num=".">.</button>
-        <button class="btn equals" data-action="equals">=</button>
+      <div class="softkeys">
+        <button class="softkey" data-soft="settings">SETTINGS</button>
+        <button class="softkey" data-soft="variable">VARIABLE</button>
+        <button class="softkey" data-soft="function">FUNCTION</button>
+        <button class="softkey" data-soft="catalog">CATALOG</button>
+        <button class="softkey" data-soft="tools">TOOLS</button>
       </div>
     </section>
 
-    <footer class="calc-footer">
-      <p>Keyboard: <kbd>0-9</kbd> <kbd>.</kbd> <kbd>+ − * /</kbd> <kbd>^</kbd> <kbd>( )</kbd> <kbd>Enter</kbd> <kbd>Backspace</kbd> <kbd>Esc</kbd></p>
-    </footer>
+    <section class="keypad">
+      <button class="key menu" data-action="menu" title="MENU">MENU</button>
+      <button class="key bksp" data-action="backspace" title="BACKSPACE">⌫</button>
+      <div class="cursor" title="Cursor pad — arrow keys on the desktop">
+        <button class="c-arrow up" data-cursor="up" aria-label="Up">▲</button>
+        <button class="c-arrow left" data-cursor="left" aria-label="Left">◀</button>
+        <button class="c-ok" data-action="ok" aria-label="OK">OK</button>
+        <button class="c-arrow right" data-cursor="right" aria-label="Right">▶</button>
+        <button class="c-arrow down" data-cursor="down" aria-label="Down">▼</button>
+      </div>
+      <button class="key ac" data-action="clear" title="All Clear">AC</button>
+
+      <button class="key fn" data-op="(">(</button>
+      <button class="key fn" data-op=")">)</button>
+      <button class="key fn" data-action="negate" title="Negation">(−)</button>
+      <button class="key fn" data-action="swap" title="Swap">SWAP</button>
+      <button class="key fn" data-soft="variable" title="Variables">VAR</button>
+      <button class="key fn" data-soft="catalog" title="Catalog">CAT</button>
+
+      <button class="key fn wide back" data-action="back" title="Back">BACK</button>
+      <button class="key num" data-num="7">7</button>
+      <button class="key num" data-num="8">8</button>
+      <button class="key num" data-num="9">9</button>
+      <button class="key op" data-op="/">÷</button>
+
+      <button class="key fn wide" data-sym="!" title="Factorial">x!</button>
+      <button class="key num" data-num="4">4</button>
+      <button class="key num" data-num="5">5</button>
+      <button class="key num" data-num="6">6</button>
+      <button class="key op" data-op="*">×</button>
+
+      <button class="key fn wide" data-sym="^2" title="Square">x²</button>
+      <button class="key num" data-num="1">1</button>
+      <button class="key num" data-num="2">2</button>
+      <button class="key num" data-num="3">3</button>
+      <button class="key op" data-op="-">−</button>
+
+      <button class="key fn wide" data-op="%">%</button>
+      <button class="key num zero" data-num="0">0</button>
+      <button class="key num" data-num=".">.</button>
+      <button class="key exe" data-action="equals">EXE</button>
+      <button class="key op" data-op="+">+</button>
+    </section>
   </main>
 
   <script src="js/main.js"></script>
