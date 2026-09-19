@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Zero-dependency scientific calculator with trig, logs, factorials, and degree/radian support. Plain HTML, CSS, and JavaScript.">
+  <title>Scientific Calculator</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <main class="calc">
+    <header class="calc-header">
+      <div class="title-block">
+        <h1 class="brand">SciCalc<span>.</span></h1>
+        <p class="subtitle">scientific calculator</p>
+      </div>
+      <div class="mode-toggle" id="mode-toggle" title="Toggle angle mode">
+        <span class="mode-label">Angle</span>
+        <button class="mode-btn" id="mode-btn" aria-pressed="true">DEG</button>
+      </div>
+    </header>
+
+    <section class="display" aria-live="polite">
+      <p class="expr" id="expr">&nbsp;</p>
+      <p class="result" id="result">0</p>
+    </section>
+
+    <section class="keypad" aria-label="Calculator keypad">
+      <div class="pad-scientific" id="pad-scientific">
+        <button class="btn fn" data-sym="pi">π</button>
+        <button class="btn fn" data-sym="e">e</button>
+        <button class="btn fn" data-fn="sin">sin</button>
+        <button class="btn fn" data-fn="cos">cos</button>
+        <button class="btn fn" data-fn="tan">tan</button>
+        <button class="btn fn" data-fn="ln">ln</button>
+        <button class="btn fn" data-fn="log">log</button>
+        <button class="btn fn" data-sym="sqrt">√</button>
+        <button class="btn fn" data-sym="^">x<sup>y</sup></button>
+        <button class="btn fn" data-sym="^2">x²</button>
+        <button class="btn fn" data-op="(">(</button>
+        <button class="btn fn" data-op=")">)</button>
+        <button class="btn fn" data-sym="!">x!</button>
+        <button class="btn fn" data-op="%">%</button>
+      </div>
+
+      <div class="pad-main">
+        <button class="btn utility" data-action="clear">AC</button>
+        <button class="btn utility" data-action="backspace">⌫</button>
+        <button class="btn utility" data-action="negate">±</button>
+        <button class="btn op" data-op="/">÷</button>
+
+        <button class="btn num" data-num="7">7</button>
+        <button class="btn num" data-num="8">8</button>
+        <button class="btn num" data-num="9">9</button>
+        <button class="btn op" data-op="*">×</button>
+
+        <button class="btn num" data-num="4">4</button>
+        <button class="btn num" data-num="5">5</button>
+        <button class="btn num" data-num="6">6</button>
+        <button class="btn op" data-op="-">−</button>
+
+        <button class="btn num" data-num="1">1</button>
+        <button class="btn num" data-num="2">2</button>
+        <button class="btn num" data-num="3">3</button>
+        <button class="btn op" data-op="+">+</button>
+
+        <button class="btn num zero" data-num="0">0</button>
+        <button class="btn num" data-num=".">.</button>
+        <button class="btn equals" data-action="equals">=</button>
+      </div>
+    </section>
+
+    <footer class="calc-footer">
+      <p>Keyboard: <kbd>0-9</kbd> <kbd>.</kbd> <kbd>+ − * /</kbd> <kbd>^</kbd> <kbd>( )</kbd> <kbd>Enter</kbd> <kbd>Backspace</kbd> <kbd>Esc</kbd></p>
+    </footer>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
